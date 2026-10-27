@@ -27,23 +27,9 @@ npm run build
 npm run preview
 ```
 
-## Put the project on GitHub
+## Deploy on GitHub
 
-### Option A: GitHub CLI
-
-Install and sign in to [GitHub CLI](https://cli.github.com/), then run these commands from the project folder:
-
-```powershell
-git init
-git add .
-git commit -m "Build CGACMS governance prototype"
-git branch -M main
-gh repo create CGACMS --public --source=. --remote=origin --push
-```
-
-Choose `--private` instead of `--public` if the repository should be private.
-
-### Option B: GitHub website
+### GitHub website
 
 1. Create an empty repository named `CGACMS` at [github.com/new](https://github.com/new). Do not initialize it with a README or license.
 2. In the project folder, run:
