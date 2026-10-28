@@ -1,87 +1,107 @@
 # College Cyber Governance, Audit & Compliance Management System
 
-CGACMS is a React prototype for managing cybersecurity governance workflows at a college. The interface includes dashboard, users and roles, staff onboarding and offboarding, asset inventory, access governance, software licenses, audits, risks, and compliance tracking.
+CGACMS is a React prototype for centralizing cybersecurity governance work at a college. It brings staff lifecycle, access review, asset recovery, license tracking, audit management, risk tracking, and compliance evidence into one workspace.
 
-The current version is a frontend prototype with sample records. Asset records are saved in the current browser using local storage. Authentication, shared database storage, and real approval integrations are not connected yet.
+> **Prototype notice:** This repository contains a client-side demo with sample records. Records are saved to the browser's local storage and uploaded evidence is saved in that browser's IndexedDB. There is no server, authentication, authorization enforcement, shared database, or backup. Do not enter real staff, student, security, or compliance data. GitHub Pages is suitable for previewing this frontend, not for operating the institution's production governance system.
+
+## Features
+
+- Governance dashboard with current audit, risk, license, and compliance summaries.
+- User and role directory with activate/suspend controls and a role-permissions matrix.
+- Staff onboarding workflow with checklist progression.
+- Staff offboarding workflow with access revocation and asset-return tracking.
+- Asset inventory with assignment, availability filters, and CSV export.
+- Access registry with Active, Pending, Privileged, and Dormant views; pending requests can be approved or denied.
+- Software license inventory with seat assignment and reclamation.
+- Audit views for Active, Completed, and Scheduled audits, including start and closure actions.
+- Risk register with likelihood × impact scores, filters, and treatment status.
+- Compliance control register with local evidence upload and download.
+- Governance activity trail for changes made in the current browser.
+- CSV export from each data module.
+- Responsive layout based on the supplied CGACMS design references.
+
+## Technology
+
+- React 19
+- Vite 8
+- Browser local storage for prototype records
+- IndexedDB for uploaded evidence files
+- GitHub Actions and GitHub Pages for static preview deployment
+
+## Requirements
+
+- Node.js 22.12 or newer (Node.js 22 LTS recommended)
+- npm, included with Node.js
 
 ## Run locally
 
-1. Install Node.js 22 or newer from [nodejs.org](https://nodejs.org/).
-2. Open PowerShell or a terminal in the project folder.
-3. Install the project dependencies:
+### First-time setup
 
-   ```powershell
-   npm install
-   ```
-4. Start the development server:
+Clone the repository and enter the project folder:
 
-   ```powershell
-   npm run dev
-   ```
-5. Open the local URL printed in the terminal, usually `http://localhost:5173/`.
+```powershell
+git clone https://github.com/aashay-d12/CGACMS.git
+cd CGACMS
+```
 
-To create and preview a production build locally:
+If you already have this project folder, open PowerShell in that folder and continue with the install step.
+
+### Start the app
+
+Open PowerShell or a terminal in the project directory and run:
+
+```powershell
+npm install
+npm run dev
+```
+
+Open the URL printed by Vite. By default, it is `http://localhost:5173/`.
+
+To create and serve the production build locally:
 
 ```powershell
 npm run build
 npm run preview
 ```
 
-## Put the project on GitHub
+The production files are written to `dist/`. The `dist/` directory is generated and should not be committed.
 
-### Option A: GitHub CLI
+## Publish a preview with GitHub Pages
 
-Install and sign in to [GitHub CLI](https://cli.github.com/), then run these commands from the project folder:
-
-```powershell
-git init
-git add .
-git commit -m "Build CGACMS governance prototype"
-git branch -M main
-gh repo create CGACMS --public --source=. --remote=origin --push
-```
-
-Choose `--private` instead of `--public` if the repository should be private.
-
-### Option B: GitHub website
-
-1. Create an empty repository named `CGACMS` at [github.com/new](https://github.com/new). Do not initialize it with a README or license.
-2. In the project folder, run:
-
-   ```powershell
-   git init
-   git add .
-   git commit -m "Build CGACMS governance prototype"
-   git branch -M main
-   git remote add origin https://github.com/YOUR-USERNAME/CGACMS.git
-   git push -u origin main
-   ```
-
-Replace `YOUR-USERNAME` with your GitHub username.
-
-## Publish on GitHub Pages
-
-The included workflow at `.github/workflows/deploy-pages.yml` builds and publishes the site whenever you push to `main`.
+The workflow in `.github/workflows/deploy-pages.yml` builds the Vite app and deploys it on every push to `main`.
 
 1. Push the repository to GitHub using one of the methods above.
 2. In the repository, open **Settings → Pages**.
-3. Under **Build and deployment**, set the source to **GitHub Actions**.
-4. Open the **Actions** tab and wait for **Deploy CGACMS to GitHub Pages** to complete.
-5. Open the published URL shown in the workflow’s deployment job. It will usually look like `https://YOUR-USERNAME.github.io/CGACMS/`.
+3. Set **Build and deployment → Source** to **GitHub Actions**.
+4. Open **Actions** and wait for **Deploy CGACMS to GitHub Pages** to finish.
+5. Open the published URL shown by the deployment job. For this repository it is `https://aashay-d12.github.io/CGACMS/`.
 
-Future updates publish automatically when committed and pushed to `main`:
+The Vite configuration sets the repository subpath during the GitHub Actions build, so assets load from the correct Pages URL.
 
-```powershell
-git add .
-git commit -m "Describe your update"
-git push
+## Project structure
+
+```text
+CGACMS/
+├── .github/workflows/deploy-pages.yml  # GitHub Pages deployment
+├── src/
+│   ├── App.jsx                         # Modules, workflows, and local demo data
+│   ├── main.jsx                        # React entry point
+│   └── styles.css                      # Responsive application styling
+├── index.html
+├── package.json
+├── package-lock.json
+└── vite.config.js
 ```
 
-## Main commands
+## Useful commands
 
-| Command             | Purpose                                 |
-| ------------------- | --------------------------------------- |
-| `npm install`     | Install dependencies                    |
-| `npm run dev`     | Start the local development server      |
-| `npm run build`   | Create the production site in `dist/` |
-| `npm run preview` | Preview the production build locally    |
+| Command | Description |
+| --- | --- |
+| `npm install` | Install project dependencies |
+| `npm run dev` | Start the development server |
+| `npm run build` | Build the static production app |
+| `npm run preview` | Serve the production build locally |
+
+## Production roadmap
+
+Before using CGACMS with institutional data, add a backend API, PostgreSQL database, authentication and server-enforced role permissions, audit logging, backups, and controlled evidence storage. The current local browser storage is for demonstration only and does not synchronize between staff or devices.
