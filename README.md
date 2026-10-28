@@ -29,10 +29,7 @@ npm run preview
 
 ## Deploy on GitHub
 
-### GitHub website
-
-1. Create an empty repository named `CGACMS` at [github.com/new](https://github.com/new). Do not initialize it with a README or license.
-2. In the project folder, run:
+In the project folder, run:
 
    ```powershell
    git init
