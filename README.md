@@ -66,9 +66,21 @@ npm run preview
 
 The production files are written to `dist/`. The `dist/` directory is generated and should not be committed.
 
+## Push changes to GitHub
+
+This project is connected to [github.com/aashay-d12/CGACMS](https://github.com/aashay-d12/CGACMS). From the project folder, run these commands after making changes:
+
+```powershell
+git add README.md package.json package-lock.json src .github
+git commit -m "Improve CGACMS governance workflows"
+git push origin main
+```
+
+GitHub will request authentication if this computer is not already signed in. For a fork or a different remote, update the clone URL and remote name to match that repository.
+
 ## Publish a preview with GitHub Pages
 
-The workflow in `.github/workflows/deploy-pages.yml` builds the Vite app and deploys it on every push to `main`.
+The workflow in `.github/workflows/deploy-pages.yml` builds and deploys the Vite app whenever you push to `main`.
 
 1. Push the repository to GitHub using one of the methods above.
 2. In the repository, open **Settings → Pages**.
