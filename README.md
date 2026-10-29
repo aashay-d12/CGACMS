@@ -2,8 +2,6 @@
 
 CGACMS is a React prototype for centralizing cybersecurity governance work at a college. It brings staff lifecycle, access review, asset recovery, license tracking, audit management, risk tracking, and compliance evidence into one workspace.
 
-> **Prototype notice:** This repository contains a client-side demo with sample records. Records are saved to the browser's local storage and uploaded evidence is saved in that browser's IndexedDB. There is no server, authentication, authorization enforcement, shared database, or backup. Do not enter real staff, student, security, or compliance data. GitHub Pages is suitable for previewing this frontend, not for operating the institution's production governance system.
-
 ## Features
 
 - Governance dashboard with current audit, risk, license, and compliance summaries.
